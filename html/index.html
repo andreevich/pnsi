@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/todo.js"></script>
+    <link rel="stylesheet" href="/css/todo.css">
+  </head>
+  <body>
+    <div ng-controller="TodoController">
+      <a href="" ng-click="switch('o')">Обязательные</a> <a href="" ng-click="switch('n')">Необязательные</a> <br/>
+	  <a href="" ng-click="fil59()">059</a>
+	  
+	  <form ng-submit="" ng-show="myValue">
+        <input type="text" ng-model="P.RESON"  			size="30" placeholder="Причина"><br/>
+        <input type="text" ng-model="P.MANAG_NO"  		size="19" placeholder="Администрация собственница">
+        <input type="text" ng-model="P.P_SIGN_NO"  		size="5" placeholder="Признак"><br/>
+        <input type="text" ng-model="P.MANAG_NO_1"  	size="30" placeholder="Администрация назначения"><br/>
+		<input type="text" ng-model="P.STA_NO_1"  		size="30" placeholder="Станция погрузки"><br/>
+        <input type="text" ng-model="P.V_BAN_PER_BGN"   size="30" placeholder="Дата начала разрешения"><br/>
+        <input type="text" ng-model="P.V_BAN_PER_END"   size="30" placeholder="Дата окончания разрешения"><br/>
+      </form>
+	  
+	  <form ng-submit="" ng-show="myValue2">
+        <input type="text" ng-model="P.V_KIND_NO"  size="30" placeholder="Род вагона"><br/>
+        <input type="text" ng-model="P.V_TYPE_NO"  size="30" placeholder="Тип вагона"><br/>
+        <input type="text" ng-model="P.OWN_NO" 		 size="30" placeholder="Код собственника вагона"><br/>
+        <input type="text" ng-model="P.CARGO"  		size="30" placeholder="Код груза"><br/>
+        <input type="text" ng-model="P.STA_NO"  		size="30" placeholder="Станция назначения"><br/>
+        <input type="text" ng-model="P.CARGO_GS" 		 size="30" placeholder="Код тарифной подгруппы"><br/>
+        <input type="text" ng-model="P.LIST_NO"  		size="30" placeholder="Номер списка"><br/>
+        <input type="text" ng-model="P.COMP_L_BGN"  size="30" placeholder="Начало действия списка"><br/>
+        <input type="text" ng-model="P.COMP_L_END"  size="30" placeholder="Конец действия списка"><br/>
+        <input type="text" ng-model="P.PR3STR"  	size="30" placeholder="В третьи страны (1)"><br/>
+        <input type="text" ng-model="P.ROAD_NO" 	 size="30" placeholder="Код дороги назначения"><br/>
+      </form>
+	  
+	  <!-- блок с номером вагона -->
+      <form ng-submit="addTodo()" ng-show="myValue">
+        <input type="text" ng-model="P.todoText"  size="25" placeholder="Номер вагона">
+        <input class="btn-primary" type="submit" value="+"><br/>
+		<label class="err-{{result.err}}">{{result.text}} </label><br/>
+      <span>{{ARR.length}} вагон (а/ов)</span>
+      <a href="" ng-click="archive()" ng-show="ARR.length>0">Очистить</a>
+      <ul class="unstyled">
+        <li ng-repeat="todo in ARR">
+           <span class="done-{{todo.done}}">{{todo.todoText}}</span> <span class="st_pogr" >{{todo.STA_NO_1}}</span> <span class=del title='Удалить вагон' ng-click="deleteItem($index)">x</span>
+        </li>
+      </ul>
+	 
+	  <input class="btn-primary" type="submit" ng-show="ARR.length>0" value="Отправить" ng-click="sendAll()"><br/>
+	  </form>
+	  
+	  <pre>{{pre}}<pre>
+    </div>
+  </body>
+</html>
